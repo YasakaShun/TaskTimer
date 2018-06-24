@@ -30,7 +30,7 @@
             <!-- 左のメニューバー -->
             <Grid DockPanel.Dock="Left" Background="LightYellow">
                 <StackPanel>
-                    <Button>left</Button>
+                    <Button Content="Add" Click="AddButton_Click" />
                 </StackPanel>
             </Grid>
             <!-- 下のメッセージ領域 -->

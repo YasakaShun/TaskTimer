@@ -54,5 +54,11 @@ namespace TaskTimer
 
             chart.Series.Add(series);
         }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AddWindow();
+            window.Show();
+        }
     }
 }
