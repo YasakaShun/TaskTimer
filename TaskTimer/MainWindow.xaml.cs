@@ -26,6 +26,11 @@ namespace TaskTimer
         {
             InitializeComponent();
 
+            // graphTest();
+        }
+
+        private void graphTest()
+        {
             var windowsFormsHost = (WindowsFormsHost)MainGrid.Children[0];
 
             var chart = (Chart)windowsFormsHost.Child;

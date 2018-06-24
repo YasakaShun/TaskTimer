@@ -39,13 +39,7 @@
             </Grid>
             <!-- メイン領域 -->
             <Grid Name="MainGrid" Background="LightGray">
-                <!--
-                <Rectangle Width="100" Height="200" Fill="Orange" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,0"/>
-                <Rectangle Width="100" Height="200" Fill="Orange" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="140,0,0,0" />
-                -->
-                <WindowsFormsHost>
-                    <wfc:Chart Name="Chart" />
-                </WindowsFormsHost>
+                <local:MainGraph />
             </Grid>
         </DockPanel>
     </Grid>
