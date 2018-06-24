@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wfc="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:TaskTimer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -37,10 +38,14 @@
                 <TextBlock>test</TextBlock>
             </Grid>
             <!-- メイン領域 -->
-            <Grid Background="LightGray">
+            <Grid Name="MainGrid" Background="LightGray">
+                <!--
                 <Rectangle Width="100" Height="200" Fill="Orange" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,0"/>
                 <Rectangle Width="100" Height="200" Fill="Orange" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="140,0,0,0" />
-                <ListBox HorizontalAlignment="Left" Height="100" Margin="494,132,0,0" VerticalAlignment="Top" Width="100"/>
+                -->
+                <WindowsFormsHost>
+                    <wfc:Chart Name="Chart" />
+                </WindowsFormsHost>
             </Grid>
         </DockPanel>
     </Grid>
