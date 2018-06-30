@@ -11,11 +11,36 @@ namespace TaskTimer.ViewModel
             mViewModel = aViewModel;
 
             TestCommand = new TestCommandImpl();
+            AddCommand = new AddCommandImpl();
         }
 
         private Obj mViewModel;
 
         public ICommand TestCommand { get; private set; }
+        public ICommand AddCommand { get; private set; }
+    }
+
+    // 空のItemを追加
+    class AddCommandImpl : ICommand
+    {
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            var itemCollection = parameter as ViewModel.ItemCollection;
+
+            itemCollection.Add(
+                new ViewModel.Item
+                {
+                    Name = "Add"
+                }
+            );
+        }
     }
 
     // コマンドのテスト
