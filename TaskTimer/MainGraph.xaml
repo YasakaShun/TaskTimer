@@ -32,7 +32,8 @@
             
         </ListView>
         <Button Command="ApplicationCommands.Copy" Content="ApplicationCommands" />
-        <Button Command="Properties" Content="Properties" Margin="0, 50, 0, 0" />
+        <Button Command="{Binding TestCommand}" Content="Test Command" Margin="0, 50, 0, 0" />
+        <Button Command="Properties" Content="Properties" Margin="0, 100, 0, 0" />
         <!--
                 <WindowsFormsHost>
                     <wfc:Chart Name="Chart" />

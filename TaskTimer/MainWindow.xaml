@@ -24,6 +24,11 @@
         <CommandBinding Command="Properties" Executed="CommandBinding_Executed" />
     </Window.CommandBindings>
 
+    <Window.InputBindings>
+        <KeyBinding Gesture="Shift+Alt+A" Command="{Binding TestCommand}" />
+        <MouseBinding Gesture="Shift+LeftClick" Command="{Binding TestCommand}" />
+    </Window.InputBindings>
+
     <Grid>
         <DockPanel>
             <!-- ツールバー -->

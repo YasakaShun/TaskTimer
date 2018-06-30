@@ -17,6 +17,7 @@ namespace TaskTimer.ViewModel
             mCycle = new TimeSpan(1, 0, 0, 0);
             mRest = mCycle.Subtract(new TimeSpan(6, 0, 0));
             mComment = "No Comment";
+            TestCommand = new TestCommandImpl();
         }
 
         // 名前
@@ -89,6 +90,23 @@ namespace TaskTimer.ViewModel
             {
                 handler(this, new PropertyChangedEventArgs(aPropertyName));
             }
+        }
+
+        public ICommand TestCommand { get; private set; }
+    }
+
+    class TestCommandImpl : ICommand
+    {
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            System.Windows.MessageBox.Show("Test");
         }
     }
 

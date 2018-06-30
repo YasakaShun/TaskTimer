@@ -22,9 +22,14 @@ namespace TaskTimer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel.ItemCollection mList;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            mList = new ViewModel.ItemCollection();
+            DataContext = mList;
 
             // graphTest();
         }

@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace TaskTimer
 {
@@ -10,11 +12,6 @@ namespace TaskTimer
         public MainGraph()
         {
             InitializeComponent();
-
-            mList = new ViewModel.ItemCollection();
-            DataContext = mList;
         }
-
-        private ViewModel.ItemCollection mList;
     }
 }
