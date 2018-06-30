@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaskTimer.ViewModel
 {
@@ -13,6 +9,15 @@ namespace TaskTimer.ViewModel
     /// </summary>
     public class Item : INotifyPropertyChanged
     {
+        // コンストラクタ
+        public Item()
+        {
+            mName = "No Name";
+            mCycle = new TimeSpan(1, 0, 0, 0);
+            mRest = mCycle.Subtract(new TimeSpan(6, 0, 0));
+            mComment = "No Comment";
+        }
+
         // 名前
         public string Name
         {
@@ -28,8 +33,35 @@ namespace TaskTimer.ViewModel
         }
         private string mName;
 
-        // public DateTimeOffset Cycle { get; set; }
-        // public DateTimeOffset LestTime { get; set; }
+        // 周期
+        public TimeSpan Cycle
+        {
+            get
+            {
+                return mCycle;
+            }
+            set
+            {
+                mCycle = value;
+                OnPropertyChanged(nameof(Cycle));
+            }
+        }
+        private TimeSpan mCycle;
+
+        // 残り時間
+        public TimeSpan Rest
+        {
+            get
+            {
+                return mRest;
+            }
+            set
+            {
+                mRest = value;
+                OnPropertyChanged(nameof(Rest));
+            }
+        }
+        private TimeSpan mRest;
 
         // コメント
         public string Comment
