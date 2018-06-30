@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -17,7 +16,6 @@ namespace TaskTimer.ViewModel
             mCycle = new TimeSpan(1, 0, 0, 0);
             mRest = mCycle.Subtract(new TimeSpan(6, 0, 0));
             mComment = "No Comment";
-            TestCommand = new TestCommandImpl();
         }
 
         // 名前
@@ -90,33 +88,6 @@ namespace TaskTimer.ViewModel
             {
                 handler(this, new PropertyChangedEventArgs(aPropertyName));
             }
-        }
-
-        public ICommand TestCommand { get; private set; }
-    }
-
-    class TestCommandImpl : ICommand
-    {
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            System.Windows.MessageBox.Show("Test");
-        }
-    }
-
-    public class ItemCollection : ObservableCollection<Item>
-    {
-        public ItemCollection()
-        {
-            this.Add(new Item { Name = "Solt", Comment = "塩だよ" });
-            this.Add(new Item { Name = "Sugar", Comment = "砂糖だよ" });
-            this.Add(new Item { Name = "Soy Source", Comment = "豆の源だよ" });
         }
     }
 }

@@ -79,6 +79,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MainWindow.Command.cs" />
+    <Compile Include="ViewModel\ItemCollection.cs" />
+    <Compile Include="ViewModel\Obj.cs" />
     <Compile Include="ViewModel\Item.cs" />
     <Compile Include="MainGraph.xaml.cs">
       <DependentUpon>MainGraph.xaml</DependentUpon>

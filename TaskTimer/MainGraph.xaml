@@ -15,7 +15,7 @@
 
         <DataGrid 
             Grid.Column="0"
-            ItemsSource="{Binding DataContext, Mode=TwoWay, RelativeSource={RelativeSource Self}}"
+            ItemsSource="{Binding Items, Mode=TwoWay}"
             AutoGenerateColumns="False"
             >
             <DataGrid.Columns>
@@ -26,14 +26,11 @@
             </DataGrid.Columns>
         </DataGrid>
         <ListView Grid.Column="1"
-                  ItemsSource="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource Self}}"
+                  ItemsSource="{Binding Items, Mode=OneWay}"
                   DisplayMemberPath="Name"
                   >
             
         </ListView>
-        <Button Command="ApplicationCommands.Copy" Content="ApplicationCommands" />
-        <Button Command="{Binding TestCommand}" Content="Test Command" Margin="0, 50, 0, 0" />
-        <Button Command="Properties" Content="Properties" Margin="0, 100, 0, 0" />
         <!--
                 <WindowsFormsHost>
                     <wfc:Chart Name="Chart" />

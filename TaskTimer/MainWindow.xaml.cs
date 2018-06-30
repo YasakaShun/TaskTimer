@@ -22,14 +22,14 @@ namespace TaskTimer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ViewModel.ItemCollection mList;
+        private ViewModel.Obj mViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            mList = new ViewModel.ItemCollection();
-            DataContext = mList;
+            mViewModel = new ViewModel.Obj();
+            DataContext = mViewModel;
 
             // graphTest();
         }
@@ -62,7 +62,7 @@ namespace TaskTimer
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = new AddWindow();
+            var window = new AddWindow(mViewModel);
             window.Show();
         }
     }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskTimer"
         mc:Ignorable="d"
-        Title="AddWindow" Height="200" Width="400">
+        Title="AddWindow" Height="300" Width="400">
 
     <Window.Resources>
         <!-- StackPanel のスタイル -->
@@ -35,10 +35,17 @@
                 <TextBox Text="Cycle"/>
             </StackPanel>
             <StackPanel>
+                <Label Content="残り時間" />
+                <TextBox Text="Rest"/>
+            </StackPanel>
+            <StackPanel>
                 <Label Content="コメント" />
                 <TextBox Text="Comment"/>
             </StackPanel>
-            <Button Content="追加" Width="100"/>
+            <Separator Margin="0,20,0,0"/>
+            <Button Content="追加" Width="100" Margin="0,20"/>
+            <Button Content="test" Width="100" Command="Properties"/>
+            <Button Command="{Binding TestCommand}" Content="Test Command" />
         </StackPanel>
     </Grid>
 </Window>
