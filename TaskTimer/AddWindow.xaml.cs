@@ -11,21 +11,41 @@ namespace TaskTimer
         {
             InitializeComponent();
 
+            // メンバ設定
             mViewModel = aViewModel;
-            DataContext = mViewModel;
+            Item = new ViewModel.Item
+            {
+                Name = "New Item",
+                Comment = ""
+            };
+
+            DataContext = Item;
         }
 
         private ViewModel.Obj mViewModel;
+        public ViewModel.Item Item { get; set; }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: 設定値をもとに追加
+            // 設定値をもとに追加
             var item = new ViewModel.Item
             {
-                Name = "Add"
+                Name = Item.Name,
+                Cycle = Item.Cycle,
+                Rest = Item.Rest,
+                Comment = Item.Comment,
             };
 
             mViewModel.Items.Add(item);
+
+            // ウィンドウを閉じる
+            this.Close();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            // ウィンドウを閉じる
+            this.Close();
         }
     }
 }

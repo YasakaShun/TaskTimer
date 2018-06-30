@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskTimer"
         mc:Ignorable="d"
-        Title="AddWindow" Height="300" Width="400">
+        Title="項目を追加" Height="220" Width="400">
 
     <Window.Resources>
         <!-- StackPanel のスタイル -->
@@ -28,24 +28,25 @@
         <StackPanel Orientation="Vertical">
             <StackPanel>
                 <Label Content="名前" />
-                <TextBox Text="Name"/>
+                <TextBox Text="{Binding Name, Mode=TwoWay}" />
             </StackPanel>
             <StackPanel>
                 <Label Content="周期" />
-                <TextBox Text="Cycle"/>
+                <TextBox Text="{Binding Cycle, Mode=TwoWay}" />
             </StackPanel>
             <StackPanel>
                 <Label Content="残り時間" />
-                <TextBox Text="Rest"/>
+                <TextBox Text="{Binding Rest, Mode=TwoWay}" />
             </StackPanel>
             <StackPanel>
                 <Label Content="コメント" />
-                <TextBox Text="Comment"/>
+                <TextBox Text="{Binding Comment, Mode=TwoWay}" />
             </StackPanel>
             <Separator Margin="0,20,0,0"/>
-            <Button Content="追加" Width="100" Click="AddButton_Click" Margin="0,20"/>
-            <Button Content="test" Width="100" Command="Properties"/>
-            <Button Command="{Binding Commands.TestCommand}" Content="Test Command" />
+            <StackPanel Margin="0,20" HorizontalAlignment="Right">
+                <Button Content="追加" Width="80" Click="AddButton_Click" />
+                <Button Content="キャンセル" Width="80" Click="CancelButton_Click" Margin="10,0,10,0"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

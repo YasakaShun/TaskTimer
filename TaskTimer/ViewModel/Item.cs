@@ -14,7 +14,7 @@ namespace TaskTimer.ViewModel
         {
             mName = "No Name";
             mCycle = new TimeSpan(1, 0, 0, 0);
-            mRest = mCycle.Subtract(new TimeSpan(6, 0, 0));
+            mRest = new TimeSpan(1, 0, 0, 0);
             mComment = "No Comment";
         }
 
