@@ -7,6 +7,8 @@
         xmlns:local="clr-namespace:TaskTimer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <!-- リソース -->
     <Window.Resources>
         <!-- ボタン用スタイル -->
         <!-- 全ボタンに適用するためx:Keyは設定しない -->
@@ -16,6 +18,11 @@
             <Setter Property="Margin" Value="5" />
         </Style>
     </Window.Resources>
+
+    <!-- コマンド -->
+    <Window.CommandBindings>
+        <CommandBinding Command="Properties" Executed="CommandBinding_Executed" />
+    </Window.CommandBindings>
 
     <Grid>
         <DockPanel>
