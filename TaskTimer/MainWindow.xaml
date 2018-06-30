@@ -31,18 +31,27 @@
 
     <Grid>
         <DockPanel>
-            <!-- ツールバー -->
+            <!-- メニューバー -->
             <Grid DockPanel.Dock="Top" Background="LightBlue">
-                <StackPanel Orientation="Horizontal" >
-                    <Button>1</Button>
-                    <Button>2</Button>
-                    <Button>3</Button>
-                </StackPanel>
+                <Menu>
+                    <MenuItem Header="ファイル">
+                        <MenuItem Header="保存" />
+                        <MenuItem Header="終了" />
+                    </MenuItem>
+                    <MenuItem Header="編集">
+                        <MenuItem Header="コピー" />
+                        <MenuItem Header="切り取り" />
+                        <MenuItem Header="貼り付け" />
+                    </MenuItem>
+                </Menu>
             </Grid>
-            <!-- 左のメニューバー -->
+            <!-- サイドバー -->
             <Grid DockPanel.Dock="Left" Background="LightYellow">
                 <StackPanel>
                     <Button Content="Add" Click="AddButton_Click" />
+                    <Button Command="ApplicationCommands.Copy" Content="ApplicationCommands" />
+                    <Button Command="{Binding TestCommand}" Content="Test Command" />
+                    <Button Command="Properties" Content="Properties" />
                 </StackPanel>
             </Grid>
             <!-- 下のメッセージ領域 -->
