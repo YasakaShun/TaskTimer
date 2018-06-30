@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaskTimer
+namespace TaskTimer.ViewModel
 {
     /// <summary>
     /// 各項目を表すクラス。
