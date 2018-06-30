@@ -43,9 +43,9 @@
                 <TextBox Text="Comment"/>
             </StackPanel>
             <Separator Margin="0,20,0,0"/>
-            <Button Content="追加" Width="100" Margin="0,20"/>
+            <Button Content="追加" Width="100" Click="AddButton_Click" Margin="0,20"/>
             <Button Content="test" Width="100" Command="Properties"/>
-            <Button Command="{Binding TestCommand}" Content="Test Command" />
+            <Button Command="{Binding Commands.TestCommand}" Content="Test Command" />
         </StackPanel>
     </Grid>
 </Window>

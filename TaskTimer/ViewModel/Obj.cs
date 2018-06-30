@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,28 +11,11 @@ namespace TaskTimer.ViewModel
         public Obj()
         {
             Items = new ItemCollection();
-            TestCommand = new TestCommandImpl();
+            Commands = new Commands(this);
         }
 
         public ItemCollection Items { get; set; }
-
-        public ICommand TestCommand { get; private set; }
-    }
-
-    // コマンドのテスト
-    class TestCommandImpl : ICommand
-    {
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            System.Windows.MessageBox.Show("Test");
-        }
+        public Commands Commands { get; set; }
     }
 
 }

@@ -25,8 +25,8 @@
     </Window.CommandBindings>
 
     <Window.InputBindings>
-        <KeyBinding Gesture="Shift+Alt+A" Command="{Binding TestCommand}" />
-        <MouseBinding Gesture="Shift+LeftClick" Command="{Binding TestCommand}" />
+        <KeyBinding Gesture="Shift+Alt+A" Command="{Binding Commands.TestCommand}" />
+        <MouseBinding Gesture="Shift+LeftClick" Command="{Binding Commands.TestCommand}" />
     </Window.InputBindings>
 
     <Grid>
@@ -50,7 +50,7 @@
                 <StackPanel>
                     <Button Content="Add" Click="AddButton_Click" />
                     <Button Command="ApplicationCommands.Copy" Content="ApplicationCommands" />
-                    <Button Command="{Binding TestCommand}" Content="Test Command" />
+                    <Button Command="{Binding Commands.TestCommand}" Content="Test Command" />
                     <Button Command="Properties" Content="Properties" />
                 </StackPanel>
             </Grid>

@@ -20,9 +20,9 @@
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="名前" MinWidth="100"/>
-                <DataGridTextColumn Binding="{Binding Rest}" Header="残り時間" MinWidth="200"/>
+                <DataGridTextColumn Binding="{Binding Rest}" Header="残り時間" MinWidth="100"/>
                 <DataGridTextColumn Binding="{Binding Cycle}" Header="周期" MinWidth="100"/>
-                <DataGridTextColumn Binding="{Binding Comment}" Header="コメント" MinWidth="150"/>
+                <DataGridTextColumn Binding="{Binding Comment}" Header="コメント" MinWidth="150" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <ListView Grid.Column="1"
