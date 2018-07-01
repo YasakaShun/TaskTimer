@@ -7,6 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
+    <UserControl.Resources>
+        <local:TimeSpanToGraph x:Key="TimeToGraph" />
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="300"/>
@@ -32,9 +36,29 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Name}" Header="名前" MinWidth="100"/>
-                <DataGridTextColumn Binding="{Binding Rest}" Header="残り時間" MinWidth="100"/>
-                <DataGridTextColumn Binding="{Binding Cycle}" Header="周期" MinWidth="100"/>
-                <DataGridTextColumn Binding="{Binding Comment}" Header="コメント" MinWidth="150" Width="*"/>
+                <DataGridTemplateColumn Header="残り時間">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Border Height="20" 
+                                        Width="{Binding Cycle, Converter={StaticResource TimeToGraph}}"
+                                        HorizontalAlignment="Left"
+                                        BorderThickness="1"
+                                        BorderBrush="Red"
+                                        >
+                                    <Rectangle 
+                                    HorizontalAlignment="Left"
+                                    Fill="Blue" 
+                                    Width="{Binding Rest, Converter={StaticResource TimeToGraph}}"
+                                    />
+                                </Border>
+                                <TextBlock Text="{Binding Rest}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Cycle}" Header="周期" />
+                <DataGridTextColumn Binding="{Binding Comment}" Header="コメント" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <ListView Grid.Column="1"

@@ -38,7 +38,7 @@
                 <Menu>
                     <MenuItem Header="ファイル">
                         <MenuItem Header="保存" Command="{Binding Commands.FileSaveCommand}" CommandParameter="{Binding}" />
-                        <MenuItem Header="読み込み" Command="{Binding Commands.FileLoadCommand}" CommandParameter="{Binding}" />
+                        <MenuItem Header="開く" Command="{Binding Commands.FileLoadCommand}" CommandParameter="{Binding}" />
                         <MenuItem Header="終了" />
                     </MenuItem>
                     <MenuItem Header="編集">

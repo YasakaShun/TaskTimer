@@ -10,6 +10,22 @@ namespace TaskTimer.ViewModel
     /// </summary>
     public class Item : INotifyPropertyChanged
     {
+        /// <summary>
+        /// 文字列から生成
+        /// </summary>
+        static public Item Parse(string aStr)
+        {
+            var str = aStr.Split(',');
+            return new Item
+            {
+                Name = str[0],
+                Cycle = TimeSpan.FromDays(int.Parse(str[1])),
+                Comment = str[2],
+                DoneDate = DateTime.Parse(str[3]),
+                Offset = TimeSpan.FromDays(int.Parse(str[4])),
+            };
+        }
+
         // コンストラクタ
         public Item()
         {
@@ -122,6 +138,20 @@ namespace TaskTimer.ViewModel
             DoneDate = DateTime.Now;
             Offset = new TimeSpan();
             MessageBox.Show("えらい！");
+        }
+
+        /// <summary>
+        /// 文字列として出力
+        /// </summary>
+        public override string ToString()
+        {
+            return
+                Name + "," +
+                Cycle.Days.ToString() + "," +
+                Comment + "," +
+                DoneDate.ToString() + "," +
+                Offset.Days.ToString()
+                ;
         }
 
         // INotifyPropertyChanged インターフェースの実装

@@ -11,8 +11,8 @@ namespace TaskTimer.ViewModel
         {
             AddCommand = new AddCommandImpl();
             DoneCommand = new DoneCommandImpl();
-            FileLoadCommand = new FileLoadCommandImpl();
-            FileSaveCommand = new FileSaveCommandImpl();
+            FileLoadCommand = new FileLoadCommandImpl(aViewModel);
+            FileSaveCommand = new FileSaveCommandImpl(aViewModel);
         }
 
         public ICommand AddCommand { get; private set; }
@@ -26,6 +26,13 @@ namespace TaskTimer.ViewModel
     {
         public event EventHandler CanExecuteChanged;
 
+        private ViewModel.Obj mViewModel;
+
+        public FileLoadCommandImpl(ViewModel.Obj aViewModel)
+        {
+            mViewModel = aViewModel;
+        }
+
         public bool CanExecute(object parameter)
         {
             return true;
@@ -35,16 +42,25 @@ namespace TaskTimer.ViewModel
         {
             var dialog = new OpenFileDialog();
             dialog.Title = "ファイルを開く";
-            dialog.Filter = "全てのファイル(*.*)|*.*";
-            if (dialog.ShowDialog() == DialogResult.Yes)
+            dialog.Filter = "CSVファイル(*.csv)|*.csv";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                // TODO:
+                try
+                {
+                    using (var sr = new System.IO.StreamReader(dialog.FileName, System.Text.Encoding.UTF8))
+                    {
+                        mViewModel.Items.Clear();
 
-            }
-            else
-            {
-                // TODO:
-
+                        while (!sr.EndOfStream)
+                        {
+                            mViewModel.Items.Add(Item.Parse(sr.ReadLine()));
+                        }
+                    }
+                }
+                catch (SystemException e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
         }
     }
@@ -53,6 +69,13 @@ namespace TaskTimer.ViewModel
     class FileSaveCommandImpl : ICommand
     {
         public event EventHandler CanExecuteChanged;
+
+        private ViewModel.Obj mViewModel;
+
+        public FileSaveCommandImpl(ViewModel.Obj aViewModel)
+        {
+            mViewModel = aViewModel;
+        }
 
         public bool CanExecute(object parameter)
         {
@@ -63,16 +86,23 @@ namespace TaskTimer.ViewModel
         {
             var dialog = new SaveFileDialog();
             dialog.Title = "ファイルを保存";
-            dialog.Filter = "テキストファイル|*.txt";
-            if (dialog.ShowDialog() == DialogResult.Yes)
+            dialog.Filter = "CSVファイル|*.csv";
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                // TODO:
-
-            }
-            else
-            {
-                // TODO:
-
+                try
+                {
+                    using (var sw = new System.IO.StreamWriter(dialog.FileName, false, System.Text.Encoding.UTF8))
+                    {
+                        foreach (var item in mViewModel.Items)
+                        {
+                            sw.WriteLine(item.ToString());
+                        }
+                    }
+                }
+                catch (SystemException e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
         }
     }
