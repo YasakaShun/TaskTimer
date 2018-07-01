@@ -13,11 +13,7 @@ namespace TaskTimer
 
             // メンバ設定
             mViewModel = aViewModel;
-            Item = new ViewModel.Item
-            {
-                Name = "New Item",
-                Comment = ""
-            };
+            Item = new ViewModel.Item();
 
             DataContext = Item;
         }

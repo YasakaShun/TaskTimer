@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace TaskTimer.ViewModel
@@ -14,8 +15,10 @@ namespace TaskTimer.ViewModel
         {
             mName = "No Name";
             mCycle = new TimeSpan(1, 0, 0, 0);
-            mRest = new TimeSpan(1, 0, 0, 0);
-            mComment = "No Comment";
+            mComment = "";
+
+            DoneDate = DateTime.Today;
+            Offset = new TimeSpan();
         }
 
         // 名前
@@ -44,6 +47,7 @@ namespace TaskTimer.ViewModel
             {
                 mCycle = value;
                 OnPropertyChanged(nameof(Cycle));
+                OnPropertyChanged(nameof(Rest));
             }
         }
         private TimeSpan mCycle;
@@ -53,11 +57,13 @@ namespace TaskTimer.ViewModel
         {
             get
             {
+                mRest = Cycle - (DateTime.Now - DoneDate) - Offset;
                 return mRest;
             }
             set
             {
                 mRest = value;
+                Offset = Cycle - (DateTime.Now - DoneDate) - value;
                 OnPropertyChanged(nameof(Rest));
             }
         }
@@ -77,6 +83,46 @@ namespace TaskTimer.ViewModel
             }
         }
         private string mComment;
+
+        // 最後にやった日
+        public DateTime DoneDate
+        {
+            get
+            {
+                return mDoneDate;
+            }
+            set
+            {
+                mDoneDate = value;
+                OnPropertyChanged(nameof(DoneDate));
+            }
+        }
+        private DateTime mDoneDate;
+
+        public TimeSpan Offset
+        {
+            get
+            {
+                return mOffset;
+            }
+            set
+            {
+                mOffset = value;
+                OnPropertyChanged(nameof(Offset));
+                OnPropertyChanged(nameof(Rest));
+            }
+        }
+        private TimeSpan mOffset;
+
+        /// <summary>
+        /// やった
+        /// </summary>
+        public void Done()
+        {
+            DoneDate = DateTime.Now;
+            Offset = new TimeSpan();
+            MessageBox.Show("えらい！");
+        }
 
         // INotifyPropertyChanged インターフェースの実装
         public event PropertyChangedEventHandler PropertyChanged;

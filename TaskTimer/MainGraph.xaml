@@ -16,9 +16,21 @@
         <DataGrid 
             Grid.Column="0"
             ItemsSource="{Binding Items, Mode=TwoWay}"
+            SelectedItem="{Binding CurrentRowItem}"
             AutoGenerateColumns="False"
             >
             <DataGrid.Columns>
+                <DataGridTemplateColumn Header="やった？">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="やった！" 
+                                    Command="{Binding Path=DataContext.Commands.DoneCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainGraph}}}"
+                                    CommandParameter="{Binding}"
+                                    Width="Auto" Height="Auto" Margin="0" 
+                                    />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Name}" Header="名前" MinWidth="100"/>
                 <DataGridTextColumn Binding="{Binding Rest}" Header="残り時間" MinWidth="100"/>
                 <DataGridTextColumn Binding="{Binding Cycle}" Header="周期" MinWidth="100"/>

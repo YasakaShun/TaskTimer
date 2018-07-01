@@ -9,16 +9,14 @@ namespace TaskTimer.ViewModel
     {
         public Commands(ViewModel.Obj aViewModel)
         {
-            mViewModel = aViewModel;
-
             AddCommand = new AddCommandImpl();
+            DoneCommand = new DoneCommandImpl();
             FileLoadCommand = new FileLoadCommandImpl();
             FileSaveCommand = new FileSaveCommandImpl();
         }
 
-        private Obj mViewModel;
-
         public ICommand AddCommand { get; private set; }
+        public ICommand DoneCommand { get; private set; }
         public ICommand FileLoadCommand { get; private set; }
         public ICommand FileSaveCommand { get; private set; }
     }
@@ -93,12 +91,27 @@ namespace TaskTimer.ViewModel
         {
             var itemCollection = parameter as ViewModel.ItemCollection;
 
-            itemCollection.Add(
-                new ViewModel.Item
-                {
-                    Name = "Add"
-                }
-            );
+            itemCollection.Add(new ViewModel.Item());
+        }
+    }
+
+    // 項目を消化
+    class DoneCommandImpl : ICommand
+    {
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            var item = parameter as Item;
+            if (item != null)
+            {
+                item.Done();
+            }
         }
     }
 
