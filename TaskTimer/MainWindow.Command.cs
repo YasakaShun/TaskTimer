@@ -112,7 +112,13 @@ namespace TaskTimer
         private void CopyItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
             // 文字列としてクリップボードにコピー
-            var item = e.Parameter as ViewModel.Item;
+            var mainGraph = e.Source as MainGraph;
+            if (mainGraph == null)
+            {
+                return;
+            }
+
+            var item = mainGraph.datagrid.SelectedItem as ViewModel.Item;
             if (item != null)
             {
                 System.Windows.Clipboard.SetData(System.Windows.DataFormats.CommaSeparatedValue, item.ToString());
@@ -127,12 +133,11 @@ namespace TaskTimer
         /// <param name="e"></param>
         private void PasteItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            // TODO: Ctrl+C でクリップボードにコピーされる場合に対応
+            // クリップボードの文字列をItemにパースして追加
             System.Windows.IDataObject data = System.Windows.Clipboard.GetDataObject();
             if (data.GetDataPresent(System.Windows.DataFormats.CommaSeparatedValue))
             {
                 string str = (string)data.GetData(System.Windows.DataFormats.CommaSeparatedValue);
-                System.Windows.MessageBox.Show(str);
                 mViewModel.Items.Add(ViewModel.Item.Parse(str));
             }
 
@@ -145,7 +150,13 @@ namespace TaskTimer
         /// <param name="e"></param>
         private void DeleteItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            var item = e.Parameter as ViewModel.Item;
+            var mainGraph = e.Source as MainGraph;
+            if (mainGraph == null)
+            {
+                return;
+            }
+
+            var item = mainGraph.datagrid.SelectedItem as ViewModel.Item;
             if (item != null)
             {
                 mViewModel.Items.Remove(item);

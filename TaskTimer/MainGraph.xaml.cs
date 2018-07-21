@@ -17,6 +17,24 @@ namespace TaskTimer
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// DataGrid の選択行の内容をクリップボードにコピー。
+        /// Ctrl + C での標準のコピーの内容を変更する。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void datagrid_CopyingRowClipboardContent(object sender, DataGridRowClipboardEventArgs e)
+        {
+            e.ClipboardRowContent.Clear();
+            e.ClipboardRowContent.Add(
+                new DataGridClipboardCellContent(
+                    e.Item,
+                    (sender as DataGrid).Columns[0],
+                    e.Item.ToString()
+                    )
+                );
+        }
     }
 
     public class TimeSpanToGraph : IValueConverter

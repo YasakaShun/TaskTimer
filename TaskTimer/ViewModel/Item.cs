@@ -15,7 +15,7 @@ namespace TaskTimer.ViewModel
         /// </summary>
         static public Item Parse(string aStr)
         {
-            var str = aStr.Split(',');
+            var str = aStr.Trim().Trim('\"').Split(',');
             return new Item
             {
                 Name = str[0],

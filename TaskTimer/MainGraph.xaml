@@ -12,9 +12,9 @@
         <local:TimeSpanToGraph x:Key="TimeToGraph" />
         <!-- DataGrid の各行の ContextMenu -->
         <ContextMenu x:Key="RowContextMenu">
-            <MenuItem Header="コピー(Ctrl + C)" Command="{x:Static local:MainWindow.CopyItem}" CommandParameter="{Binding}" />
+            <MenuItem Header="コピー(Ctrl + C)" Command="{x:Static local:MainWindow.CopyItem}" />
             <MenuItem Header="貼り付け(Ctrl + V)" Command="{x:Static local:MainWindow.PasteItem}" />
-            <MenuItem Header="削除(Ctrl + D)" Command="{x:Static local:MainWindow.DeleteItem}" CommandParameter="{Binding}" />
+            <MenuItem Header="削除(Ctrl + D)" Command="{x:Static local:MainWindow.DeleteItem}" />
         </ContextMenu>
         <!-- DataGrid の各行のスタイル -->
         <Style x:Key="RowStyle" TargetType="DataGridRow">
@@ -22,6 +22,9 @@
         </Style>
     </UserControl.Resources>
 
+    <UserControl.InputBindings>
+        <KeyBinding Gesture="Ctrl+D" Command="{x:Static local:MainWindow.DeleteItem}" />
+    </UserControl.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="300"/>
@@ -29,11 +32,13 @@
         </Grid.ColumnDefinitions>
 
         <DataGrid 
+            x:Name="datagrid"
             Grid.Column="0"
             ItemsSource="{Binding Items, Mode=TwoWay}"
             SelectedItem="{Binding CurrentRowItem}"
             AutoGenerateColumns="False"
             RowStyle="{StaticResource RowStyle}"
+            CopyingRowClipboardContent="datagrid_CopyingRowClipboardContent"
             >
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="やった？">
