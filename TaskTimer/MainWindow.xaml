@@ -21,15 +21,14 @@
 
     <!-- コマンド -->
     <Window.CommandBindings>
-        <CommandBinding Command="Properties" Executed="CommandBinding_Executed" />
+        <CommandBinding Command="{x:Static local:MainWindow.FileLoad}" Executed="FileLoad_Execute" />
+        <CommandBinding Command="{x:Static local:MainWindow.FileSave}" Executed="FileSave_Execute" />
+        <CommandBinding Command="{x:Static local:MainWindow.AddItem}" Executed="AddItem_Execute" />
+        <CommandBinding Command="{x:Static local:MainWindow.DoneItem}" Executed="DoneItem_Execute" />
     </Window.CommandBindings>
 
     <Window.InputBindings>
-        <KeyBinding Gesture="Ctrl+S" Command="{Binding Commands.FileSaveCommand}" />
-        <!--
-        <KeyBinding Gesture="Shift+Alt+A" Command="{Binding Commands.TestCommand}" />
-        <MouseBinding Gesture="Shift+LeftClick" Command="{Binding Commands.TestCommand}" />
-        -->
+        <KeyBinding Gesture="Ctrl+S" Command="{x:Static local:MainWindow.FileSave}" />
     </Window.InputBindings>
 
     <Grid>
@@ -38,13 +37,13 @@
             <Grid DockPanel.Dock="Top" Background="LightBlue">
                 <Menu>
                     <MenuItem Header="ファイル">
-                        <MenuItem Header="保存(Ctrl+S)" Command="{Binding Commands.FileSaveCommand}" CommandParameter="{Binding}" />
-                        <MenuItem Header="開く" Command="{Binding Commands.FileLoadCommand}" CommandParameter="{Binding}" />
+                        <MenuItem Header="保存(Ctrl+S)" Command="{x:Static local:MainWindow.FileSave}" CommandParameter="{Binding}" />
+                        <MenuItem Header="開く" Command="{x:Static local:MainWindow.FileLoad}" CommandParameter="{Binding}" />
                         <MenuItem Header="閉じる(未対応)" />
                         <MenuItem Header="終了(未対応)" />
                     </MenuItem>
                     <MenuItem Header="編集">
-                        <MenuItem Header="項目追加" Command="{Binding Commands.AddCommand}" CommandParameter="{Binding Items}" />
+                        <MenuItem Header="項目追加" Command="{x:Static local:MainWindow.AddItem}" CommandParameter="{Binding Items}" />
                         <MenuItem Header="コピー(未対応)" />
                         <MenuItem Header="切り取り(未対応)" />
                         <MenuItem Header="貼り付け(未対応)" />
@@ -54,13 +53,8 @@
             <!-- サイドバー -->
             <Grid DockPanel.Dock="Left" Background="LightYellow">
                 <StackPanel>
-                    <Button Content="追加" Command="{Binding Commands.AddCommand}" CommandParameter="{Binding Items}" />
+                    <Button Content="追加" Command="{x:Static local:MainWindow.AddItem}" CommandParameter="{Binding Items}" />
                     <Button Content="設定して追加" Click="AddButton_Click" />
-                    <!--
-                    <Button Command="ApplicationCommands.Copy" Content="ApplicationCommands" />
-                    <Button Command="{Binding Commands.TestCommand}" Content="Test Command" />
-                    <Button Command="Properties" Content="Properties" />
-                    -->
                 </StackPanel>
             </Grid>
             <!-- 下のメッセージ領域 -->
