@@ -111,7 +111,12 @@ namespace TaskTimer
         /// <param name="e"></param>
         private void CopyItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            // TODO: 実装
+            // 文字列としてクリップボードにコピー
+            var item = e.Parameter as ViewModel.Item;
+            if (item != null)
+            {
+                System.Windows.Clipboard.SetData(System.Windows.DataFormats.CommaSeparatedValue, item.ToString());
+            }
 
         }
 
@@ -122,7 +127,14 @@ namespace TaskTimer
         /// <param name="e"></param>
         private void PasteItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            // TODO: 実装
+            // TODO: Ctrl+C でクリップボードにコピーされる場合に対応
+            System.Windows.IDataObject data = System.Windows.Clipboard.GetDataObject();
+            if (data.GetDataPresent(System.Windows.DataFormats.CommaSeparatedValue))
+            {
+                string str = (string)data.GetData(System.Windows.DataFormats.CommaSeparatedValue);
+                System.Windows.MessageBox.Show(str);
+                mViewModel.Items.Add(ViewModel.Item.Parse(str));
+            }
 
         }
 

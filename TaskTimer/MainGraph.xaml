@@ -13,7 +13,7 @@
         <!-- DataGrid の各行の ContextMenu -->
         <ContextMenu x:Key="RowContextMenu">
             <MenuItem Header="コピー(Ctrl + C)" Command="{x:Static local:MainWindow.CopyItem}" CommandParameter="{Binding}" />
-            <MenuItem Header="貼り付け(Ctrl + V)" Command="{x:Static local:MainWindow.PasteItem}" CommandParameter="{Binding}" />
+            <MenuItem Header="貼り付け(Ctrl + V)" Command="{x:Static local:MainWindow.PasteItem}" />
             <MenuItem Header="削除(Ctrl + D)" Command="{x:Static local:MainWindow.DeleteItem}" CommandParameter="{Binding}" />
         </ContextMenu>
         <!-- DataGrid の各行のスタイル -->
