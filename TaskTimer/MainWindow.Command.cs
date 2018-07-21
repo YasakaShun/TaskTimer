@@ -87,9 +87,7 @@ namespace TaskTimer
         /// <param name="e"></param>
         private void AddItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            var itemCollection = e.Parameter as ViewModel.ItemCollection;
-
-            itemCollection.Add(new ViewModel.Item());
+            mViewModel.Items.Add(new ViewModel.Item());
         }
 
         /// <summary>
@@ -138,12 +136,7 @@ namespace TaskTimer
             var item = e.Parameter as ViewModel.Item;
             if (item != null)
             {
-                System.Windows.MessageBox.Show($"delete item.\nName: {item.Name}");
-                // item.Delete();
-            }
-            else
-            {
-                System.Windows.MessageBox.Show("delete item. item is null");
+                mViewModel.Items.Remove(item);
             }
         }
     }

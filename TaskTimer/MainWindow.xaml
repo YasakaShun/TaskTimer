@@ -40,13 +40,13 @@
             <Grid DockPanel.Dock="Top" Background="LightBlue">
                 <Menu>
                     <MenuItem Header="ファイル">
-                        <MenuItem Header="保存(Ctrl+S)" Command="{x:Static local:MainWindow.FileSave}" CommandParameter="{Binding}" />
-                        <MenuItem Header="開く" Command="{x:Static local:MainWindow.FileLoad}" CommandParameter="{Binding}" />
+                        <MenuItem Header="保存(Ctrl+S)" Command="{x:Static local:MainWindow.FileSave}" />
+                        <MenuItem Header="開く" Command="{x:Static local:MainWindow.FileLoad}" />
                         <MenuItem Header="閉じる(未対応)" />
                         <MenuItem Header="終了(未対応)" />
                     </MenuItem>
                     <MenuItem Header="編集">
-                        <MenuItem Header="項目追加" Command="{x:Static local:MainWindow.AddItem}" CommandParameter="{Binding Items}" />
+                        <MenuItem Header="項目追加" Command="{x:Static local:MainWindow.AddItem}" />
                         <MenuItem Header="コピー(未対応)" />
                         <MenuItem Header="切り取り(未対応)" />
                         <MenuItem Header="貼り付け(未対応)" />
@@ -56,7 +56,7 @@
             <!-- サイドバー -->
             <Grid DockPanel.Dock="Left" Background="LightYellow">
                 <StackPanel>
-                    <Button Content="追加" Command="{x:Static local:MainWindow.AddItem}" CommandParameter="{Binding Items}" />
+                    <Button Content="追加" Command="{x:Static local:MainWindow.AddItem}" />
                     <Button Content="設定して追加" Click="AddButton_Click" />
                 </StackPanel>
             </Grid>
