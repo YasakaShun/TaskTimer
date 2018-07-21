@@ -28,7 +28,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="やった！" 
-                                    Command="{Binding Path=DataContext.Commands.DoneCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainGraph}}}"
+                                    Command="{x:Static local:MainWindow.DoneItem}"
                                     CommandParameter="{Binding}"
                                     Width="Auto" Height="Auto" Margin="0" 
                                     />
