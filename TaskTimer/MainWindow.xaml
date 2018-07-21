@@ -25,6 +25,9 @@
         <CommandBinding Command="{x:Static local:MainWindow.FileSave}" Executed="FileSave_Execute" />
         <CommandBinding Command="{x:Static local:MainWindow.AddItem}" Executed="AddItem_Execute" />
         <CommandBinding Command="{x:Static local:MainWindow.DoneItem}" Executed="DoneItem_Execute" />
+        <CommandBinding Command="{x:Static local:MainWindow.CopyItem}" Executed="CopyItem_Execute" />
+        <CommandBinding Command="{x:Static local:MainWindow.PasteItem}" Executed="PasteItem_Execute" />
+        <CommandBinding Command="{x:Static local:MainWindow.DeleteItem}" Executed="DeleteItem_Execute" />
     </Window.CommandBindings>
 
     <Window.InputBindings>

@@ -16,6 +16,9 @@ namespace TaskTimer
         public static readonly RoutedUICommand FileSave = new RoutedUICommand();
         public static readonly RoutedUICommand AddItem = new RoutedUICommand();
         public static readonly RoutedUICommand DoneItem = new RoutedUICommand();
+        public static readonly RoutedUICommand CopyItem = new RoutedUICommand();
+        public static readonly RoutedUICommand PasteItem = new RoutedUICommand();
+        public static readonly RoutedUICommand DeleteItem = new RoutedUICommand();
 
         /// <summary>
         /// ファイル読み込み
@@ -100,6 +103,47 @@ namespace TaskTimer
             if (item != null)
             {
                 item.Done();
+            }
+        }
+
+        /// <summary>
+        /// 選択項目をコピー
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CopyItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            // TODO: 実装
+
+        }
+
+        /// <summary>
+        /// コピーした項目を貼り付け
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PasteItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            // TODO: 実装
+
+        }
+
+        /// <summary>
+        /// 指定アイテムを削除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteItem_Execute(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            var item = e.Parameter as ViewModel.Item;
+            if (item != null)
+            {
+                System.Windows.MessageBox.Show($"delete item.\nName: {item.Name}");
+                // item.Delete();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("delete item. item is null");
             }
         }
     }
