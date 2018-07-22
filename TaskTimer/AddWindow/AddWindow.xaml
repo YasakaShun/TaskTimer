@@ -13,7 +13,7 @@
             <Setter Property="Orientation" Value="Horizontal" />
         </Style>
         <!-- Label のスタイル -->
-        <Style TargetType="Label">
+        <Style TargetType="Label" x:Key="HeaderLabel">
             <Setter Property="MinWidth" Value="150" />
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
@@ -27,19 +27,25 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel>
-                <Label Content="名前" />
+                <Label Content="名前" Style="{StaticResource HeaderLabel}"/>
                 <TextBox Text="{Binding Name, Mode=TwoWay}" />
             </StackPanel>
             <StackPanel>
-                <Label Content="周期" />
-                <TextBox Text="{Binding Cycle, Mode=TwoWay}" />
+                <Label Content="周期" Style="{StaticResource HeaderLabel}"/>
+                <TextBox Text="{Binding CycleDays, Mode=TwoWay}" Width="50" MinWidth="50"/>
+                <Label Content="日" />
+                <TextBox Text="{Binding CycleHours, Mode=TwoWay}" Width="50" MinWidth="50" />
+                <Label Content="時間" Style="{StaticResource HeaderLabel}"/>
             </StackPanel>
             <StackPanel>
-                <Label Content="経過時間" />
-                <TextBox Text="{Binding Pass, Mode=TwoWay}" />
+                <Label Content="次やるまでの時間" Style="{StaticResource HeaderLabel}"/>
+                <TextBox Text="{Binding RestDays, Mode=TwoWay}" Width="50" MinWidth="50" />
+                <Label Content="日" />
+                <TextBox Text="{Binding RestHours, Mode=TwoWay}" Width="50" MinWidth="50" />
+                <Label Content="時間" Style="{StaticResource HeaderLabel}"/>
             </StackPanel>
             <StackPanel>
-                <Label Content="コメント" />
+                <Label Content="コメント" Style="{StaticResource HeaderLabel}"/>
                 <TextBox Text="{Binding Comment, Mode=TwoWay}" />
             </StackPanel>
             <Separator Margin="0,20,0,0"/>

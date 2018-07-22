@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace TaskTimer.AddWindow
 {
@@ -13,23 +14,25 @@ namespace TaskTimer.AddWindow
 
             // メンバ設定
             mViewModel = aViewModel;
-            Item = new ViewModel.Item();
+            mAddViewModel = new AddViewModel();
 
-            DataContext = Item;
+            DataContext = mAddViewModel;
         }
 
         private ViewModel.Obj mViewModel;
-        public ViewModel.Item Item { get; set; }
+        private AddViewModel mAddViewModel;
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             // 設定値をもとに追加
+            var cycleTime = new TimeSpan(mAddViewModel.CycleDays, mAddViewModel.CycleHours, 0, 0);
+            var restTime = new TimeSpan(mAddViewModel.RestDays, mAddViewModel.RestHours, 0, 0);
             var item = new ViewModel.Item
             {
-                Name = Item.Name,
-                Cycle = Item.Cycle,
-                Pass = Item.Pass,
-                Comment = Item.Comment,
+                Name = mAddViewModel.Name,
+                Cycle = cycleTime,
+                Pass = cycleTime - restTime,
+                Comment = mAddViewModel.Comment,
             };
 
             mViewModel.Items.Add(item);
