@@ -132,6 +132,39 @@ namespace TaskTimer.ViewModel
         private TimeSpan mOffset;
 
         /// <summary>
+        /// 期限が近いことを報せるか
+        /// </summary>
+        public bool IsNeedAlert
+        {
+            get
+            {
+                var rest = mCycle - mPass;
+                if (rest.TotalHours < 24)
+                {
+                    return true;
+                }
+
+                double rate = mPass.TotalHours / mCycle.TotalHours;
+                if (mCycle.TotalDays <= 31)
+                {
+                    if (0.8 < rate)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (0.9 < rate)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        /// <summary>
         /// やった
         /// </summary>
         public void Done()

@@ -22,6 +22,11 @@
         <!-- DataGrid の各行のスタイル -->
         <Style x:Key="RowStyle" TargetType="DataGridRow">
             <Setter Property="ContextMenu" Value="{StaticResource RowContextMenu}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsNeedAlert}" Value="True">
+                    <Setter Property="Background" Value="Orange" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <!-- ConverterParameter に bool 値を渡すための設定 -->
         <System:Boolean x:Key="True">True</System:Boolean>
