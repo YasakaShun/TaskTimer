@@ -39,7 +39,7 @@ namespace TaskTimer
 
     public class TimeSpanToWidth : IValueConverter
     {
-        const double UnitWidth = 20.0;
+        const double UnitWidth = 30.0;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -50,16 +50,38 @@ namespace TaskTimer
             }
 
             var timeSpan = (TimeSpan)value;
-            bool isBorder = (bool)parameter;
 
             var retVal = timeSpan.TotalDays * UnitWidth;
-
-            if (isBorder && timeSpan.TotalDays < 1)
+            if (timeSpan.TotalDays < 1)
             {
                 retVal = timeSpan.TotalHours * UnitWidth / 24.0;
             }
 
             return retVal;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class TimeSpanToString : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            // TimeSpan はnull許容型ではないので、asは使えない。
+            if (!(value is TimeSpan))
+            {
+                return 0;
+            }
+
+            var timeSpan = (TimeSpan)value;
+            return string.Format(
+                "{0}{1}",
+                timeSpan.Days < 1 ? "" : $"{timeSpan.Days}日",
+                timeSpan.Hours == 0 ? "" : $"{timeSpan.Hours}時間"
+                );
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

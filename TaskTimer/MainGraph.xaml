@@ -11,6 +11,8 @@
     <UserControl.Resources>
         <!-- TimeSpan から棒グラフへのコンバータ -->
         <local:TimeSpanToWidth x:Key="TimeToWidth" />
+        <!-- 日時表示用コンバータ -->
+        <local:TimeSpanToString x:Key="TimeToString" />
         <!-- DataGrid の各行の ContextMenu -->
         <ContextMenu x:Key="RowContextMenu">
             <MenuItem Header="コピー(Ctrl + C)" Command="{x:Static local:MainWindow.CopyItem}" />
@@ -62,7 +64,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <Border Height="20" 
-                                        Width="{Binding Cycle, Converter={StaticResource TimeToWidth}, ConverterParameter={StaticResource True}}"
+                                        Width="{Binding Cycle, Converter={StaticResource TimeToWidth}}"
                                         HorizontalAlignment="Left"
                                         BorderThickness="1"
                                         BorderBrush="Red"
@@ -70,15 +72,15 @@
                                     <Rectangle 
                                     HorizontalAlignment="Left"
                                     Fill="Blue" 
-                                    Width="{Binding Pass, Converter={StaticResource TimeToWidth}, ConverterParameter={StaticResource False}}"
+                                    Width="{Binding Pass, Converter={StaticResource TimeToWidth}}"
                                     />
                                 </Border>
-                                <TextBlock Text="{Binding Pass}" />
+                                <TextBlock Text="{Binding Pass, Converter={StaticResource TimeToString}}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding Cycle}" Header="周期" />
+                <DataGridTextColumn Binding="{Binding Cycle, Converter={StaticResource TimeToString}}" Header="周期" />
                 <DataGridTextColumn Binding="{Binding Comment}" Header="コメント" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
