@@ -27,6 +27,11 @@ namespace TaskTimer.AddWindow
             // 設定値をもとに追加
             var cycleTime = new TimeSpan(mAddViewModel.CycleDays, mAddViewModel.CycleHours, 0, 0);
             var restTime = new TimeSpan(mAddViewModel.RestDays, mAddViewModel.RestHours, 0, 0);
+            if (mAddViewModel.RestSameAsCycle)
+            {
+                restTime = cycleTime;
+            }
+
             var item = new ViewModel.Item
             {
                 Name = mAddViewModel.Name,

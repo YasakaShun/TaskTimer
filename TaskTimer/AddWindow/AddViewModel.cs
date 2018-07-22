@@ -11,6 +11,7 @@ namespace TaskTimer.AddWindow
         public AddViewModel()
         {
             CycleDays = 1;
+            RestSameAsCycle = true;
         }
 
         public string Name { get; set; }
@@ -19,5 +20,6 @@ namespace TaskTimer.AddWindow
         public int RestDays { get; set; }
         public int RestHours { get; set; }
         public string Comment { get; set; }
+        public bool RestSameAsCycle { get; set; }
     }
 }

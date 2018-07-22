@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TaskTimer.AddWindow"
         xmlns:TaskTimer="clr-namespace:TaskTimer" x:Class="TaskTimer.AddWindow.AddWindow"
         mc:Ignorable="d"
-        Title="項目を追加" Height="220" Width="400">
+        Title="項目を追加" Height="230" Width="400">
 
     <Window.Resources>
         <!-- StackPanel のスタイル -->
@@ -16,6 +16,22 @@
         <Style TargetType="{x:Type Label}" x:Key="HeaderLabel">
             <Setter Property="MinWidth" Value="150" />
             <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style TargetType="{x:Type Label}" x:Key="DisabableHeaderLabel">
+            <Setter Property="MinWidth" Value="150" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RestSameAsCycle}" Value="True">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Label}" x:Key="DisabableContentLabel">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RestSameAsCycle}" Value="True">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <!-- TextBox のスタイル -->
         <Style TargetType="{x:Type TextBox}" x:Key="DefaultText" >
@@ -33,16 +49,23 @@
             <StackPanel>
                 <Label Content="周期" Style="{StaticResource HeaderLabel}"/>
                 <TaskTimer:NumericUpDown Value="{Binding CycleDays, Mode=TwoWay}" />
-                <Label Content="日" />
-                <TaskTimer:NumericUpDown Value="{Binding CycleHours, Mode=TwoWay}" Margin="20,0,0,0"/>
-                <Label Content="時間" Style="{StaticResource HeaderLabel}"/>
+                <Label Content="日"/>
+                <TaskTimer:NumericUpDown Value="{Binding CycleHours, Mode=TwoWay}" Margin="20,0,0,0" />
+                <Label Content="時間" />
             </StackPanel>
             <StackPanel>
-                <Label Content="次やるまでの時間" Style="{StaticResource HeaderLabel}"/>
-                <TaskTimer:NumericUpDown Value="{Binding RestDays, Mode=TwoWay}" />
-                <Label Content="日" />
-                <TaskTimer:NumericUpDown Value="{Binding RestHours, Mode=TwoWay}" Margin="20,0,0,0"/>
-                <Label Content="時間" Style="{StaticResource HeaderLabel}"/>
+                <Label Content="次やるまでの時間" Style="{StaticResource DisabableHeaderLabel}"/>
+                <TaskTimer:NumericUpDown 
+                    Value="{Binding RestDays, Mode=TwoWay}" 
+                    IsDisabled="{Binding RestSameAsCycle}"
+                    />
+                <Label Content="日" Style="{StaticResource DisabableContentLabel}" />
+                <TaskTimer:NumericUpDown
+                    Value="{Binding RestHours, Mode=TwoWay}" Margin="20,0,0,0"
+                    IsDisabled="{Binding RestSameAsCycle}"
+                    />
+                <Label Content="時間" Style="{StaticResource DisabableContentLabel}" />
+                <CheckBox Content="周期と同じ" IsChecked="{Binding RestSameAsCycle, Mode=TwoWay}" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel>
                 <Label Content="コメント" Style="{StaticResource HeaderLabel}"/>

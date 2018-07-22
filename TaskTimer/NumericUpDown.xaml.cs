@@ -38,5 +38,20 @@ namespace TaskTimer
                 typeof(NumericUpDown),
                 new PropertyMetadata(0)
                 );
+
+        public bool IsDisabled
+        {
+            get { return (bool)GetValue(IsDisabledProperty); }
+            set { SetValue(IsDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsDisabledProperty =
+            DependencyProperty.Register(
+                "IsDisabled",
+                typeof(bool),
+                typeof(NumericUpDown),
+                new PropertyMetadata(false)
+                );
+
     }
 }
