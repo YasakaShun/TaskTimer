@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TaskTimer"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
         <!-- TimeSpan から棒グラフへのコンバータ -->
-        <local:TimeSpanToGraph x:Key="TimeToGraph" />
+        <local:TimeSpanToWidth x:Key="TimeToWidth" />
         <!-- DataGrid の各行の ContextMenu -->
         <ContextMenu x:Key="RowContextMenu">
             <MenuItem Header="コピー(Ctrl + C)" Command="{x:Static local:MainWindow.CopyItem}" />
@@ -20,6 +21,9 @@
         <Style x:Key="RowStyle" TargetType="DataGridRow">
             <Setter Property="ContextMenu" Value="{StaticResource RowContextMenu}" />
         </Style>
+        <!-- ConverterParameter に bool 値を渡すための設定 -->
+        <System:Boolean x:Key="True">True</System:Boolean>
+        <System:Boolean x:Key="False">False</System:Boolean>
     </UserControl.Resources>
 
     <UserControl.InputBindings>
@@ -53,12 +57,12 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Name}" Header="名前" MinWidth="100"/>
-                <DataGridTemplateColumn Header="残り時間">
+                <DataGridTemplateColumn Header="経過時間">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <Border Height="20" 
-                                        Width="{Binding Cycle, Converter={StaticResource TimeToGraph}}"
+                                        Width="{Binding Cycle, Converter={StaticResource TimeToWidth}, ConverterParameter={StaticResource True}}"
                                         HorizontalAlignment="Left"
                                         BorderThickness="1"
                                         BorderBrush="Red"
@@ -66,10 +70,10 @@
                                     <Rectangle 
                                     HorizontalAlignment="Left"
                                     Fill="Blue" 
-                                    Width="{Binding Rest, Converter={StaticResource TimeToGraph}}"
+                                    Width="{Binding Pass, Converter={StaticResource TimeToWidth}, ConverterParameter={StaticResource False}}"
                                     />
                                 </Border>
-                                <TextBlock Text="{Binding Rest}" />
+                                <TextBlock Text="{Binding Pass}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

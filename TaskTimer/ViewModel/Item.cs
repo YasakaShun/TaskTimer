@@ -63,27 +63,27 @@ namespace TaskTimer.ViewModel
             {
                 mCycle = value;
                 OnPropertyChanged(nameof(Cycle));
-                OnPropertyChanged(nameof(Rest));
+                OnPropertyChanged(nameof(Pass));
             }
         }
         private TimeSpan mCycle;
 
-        // 残り時間
-        public TimeSpan Rest
+        // 経過時間
+        public TimeSpan Pass
         {
             get
             {
-                mRest = Cycle - (DateTime.Now - DoneDate) - Offset;
-                return mRest;
+                mPass = (DateTime.Now - DoneDate) - Offset;
+                return mPass;
             }
             set
             {
-                mRest = value;
-                Offset = Cycle - (DateTime.Now - DoneDate) - value;
-                OnPropertyChanged(nameof(Rest));
+                mPass = value;
+                Offset = (DateTime.Now - DoneDate) - value;
+                OnPropertyChanged(nameof(Pass));
             }
         }
-        private TimeSpan mRest;
+        private TimeSpan mPass;
 
         // コメント
         public string Comment
@@ -115,6 +115,7 @@ namespace TaskTimer.ViewModel
         }
         private DateTime mDoneDate;
 
+        // 残り時間に加算するオフセット
         public TimeSpan Offset
         {
             get
@@ -125,7 +126,7 @@ namespace TaskTimer.ViewModel
             {
                 mOffset = value;
                 OnPropertyChanged(nameof(Offset));
-                OnPropertyChanged(nameof(Rest));
+                OnPropertyChanged(nameof(Pass));
             }
         }
         private TimeSpan mOffset;

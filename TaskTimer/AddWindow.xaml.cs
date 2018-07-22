@@ -28,7 +28,7 @@ namespace TaskTimer
             {
                 Name = Item.Name,
                 Cycle = Item.Cycle,
-                Rest = Item.Rest,
+                Pass = Item.Pass,
                 Comment = Item.Comment,
             };
 

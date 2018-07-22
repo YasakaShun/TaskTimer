@@ -35,8 +35,8 @@
                 <TextBox Text="{Binding Cycle, Mode=TwoWay}" />
             </StackPanel>
             <StackPanel>
-                <Label Content="残り時間" />
-                <TextBox Text="{Binding Rest, Mode=TwoWay}" />
+                <Label Content="経過時間" />
+                <TextBox Text="{Binding Pass, Mode=TwoWay}" />
             </StackPanel>
             <StackPanel>
                 <Label Content="コメント" />
