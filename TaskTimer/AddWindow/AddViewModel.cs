@@ -8,6 +8,11 @@ namespace TaskTimer.AddWindow
 {
     class AddViewModel
     {
+        public AddViewModel()
+        {
+            CycleDays = 1;
+        }
+
         public string Name { get; set; }
         public int CycleDays { get; set; }
         public int CycleHours { get; set; }
