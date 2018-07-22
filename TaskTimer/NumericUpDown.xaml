@@ -9,8 +9,8 @@
              x:Name="Root">
 
     <Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="12">
-            <TextBox Width="30" HorizontalAlignment="Right" VerticalAlignment="Center"
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBox Width="20" HorizontalAlignment="Right" VerticalAlignment="Center"
                      Text="{Binding ElementName=Root, Path=Value}"
                      VerticalContentAlignment="Center" />
             <ScrollBar x:Name="numericScroll" 
