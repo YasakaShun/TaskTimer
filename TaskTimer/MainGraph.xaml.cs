@@ -40,6 +40,7 @@ namespace TaskTimer
     public class TimeSpanToWidth : IValueConverter
     {
         const double UnitWidth = 30.0;
+        const double MaxWidth = UnitWidth * 7;
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -57,7 +58,7 @@ namespace TaskTimer
                 retVal = timeSpan.TotalHours * UnitWidth / 24.0;
             }
 
-            return retVal;
+            return Math.Min(retVal, MaxWidth);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
