@@ -77,11 +77,18 @@ namespace TaskTimer
             }
 
             var timeSpan = (TimeSpan)value;
-            return string.Format(
-                "{0}{1}",
-                timeSpan.Days < 1 ? "" : $"{timeSpan.Days}日",
-                timeSpan.Hours == 0 ? "" : $"{timeSpan.Hours}時間"
-                );
+            if (timeSpan.Days < 1 && timeSpan.Hours == 0)
+            {
+                return $"{timeSpan.Hours}時間";
+            }
+            else
+            {
+                return string.Format(
+                    "{0}{1}",
+                    timeSpan.Days < 1 ? "" : $"{timeSpan.Days}日",
+                    timeSpan.Hours == 0 ? "" : $"{timeSpan.Hours}時間"
+                    );
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

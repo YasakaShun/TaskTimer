@@ -59,7 +59,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Name}" Header="名前" MinWidth="100"/>
-                <DataGridTemplateColumn Header="経過時間">
+                <DataGridTemplateColumn Header="経過時間" MinWidth="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
