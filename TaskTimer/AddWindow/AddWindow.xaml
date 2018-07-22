@@ -43,14 +43,14 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel>
-                <Label Content="名前" Style="{StaticResource ResourceKey=HeaderLabel}"/>
+                <Label Content="項目名" Style="{StaticResource ResourceKey=HeaderLabel}"/>
                 <TextBox Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource DefaultText}"/>
             </StackPanel>
             <StackPanel>
                 <Label Content="周期" Style="{StaticResource HeaderLabel}"/>
                 <TaskTimer:NumericUpDown Value="{Binding CycleDays, Mode=TwoWay}" />
                 <Label Content="日"/>
-                <TaskTimer:NumericUpDown Value="{Binding CycleHours, Mode=TwoWay}" Margin="20,0,0,0" />
+                <TaskTimer:NumericUpDown Value="{Binding CycleHours, Mode=TwoWay}" Margin="10,0,0,0" />
                 <Label Content="時間" />
             </StackPanel>
             <StackPanel>
@@ -61,7 +61,7 @@
                     />
                 <Label Content="日" Style="{StaticResource DisabableContentLabel}" />
                 <TaskTimer:NumericUpDown
-                    Value="{Binding RestHours, Mode=TwoWay}" Margin="20,0,0,0"
+                    Value="{Binding RestHours, Mode=TwoWay}" Margin="10,0,0,0"
                     IsDisabled="{Binding RestSameAsCycle}"
                     />
                 <Label Content="時間" Style="{StaticResource DisabableContentLabel}" />

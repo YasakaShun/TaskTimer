@@ -24,7 +24,13 @@ namespace TaskTimer.AddWindow
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            // 設定値をもとに追加
+            // 入力値が正しいかチェック
+            if (string.IsNullOrEmpty(mAddViewModel.Name))
+            {
+                MessageBox.Show("項目名が入力されていません。\n項目名を入力してください。");
+                return;
+            }
+
             var cycleTime = new TimeSpan(mAddViewModel.CycleDays, mAddViewModel.CycleHours, 0, 0);
             var restTime = new TimeSpan(mAddViewModel.RestDays, mAddViewModel.RestHours, 0, 0);
             if (mAddViewModel.RestSameAsCycle)
@@ -32,6 +38,18 @@ namespace TaskTimer.AddWindow
                 restTime = cycleTime;
             }
 
+            if (cycleTime.TotalHours <= 0)
+            {
+                MessageBox.Show("周期の入力が不正です。\n周期は1時間以上に設定してください。");
+                return;
+            }
+            if (restTime.TotalHours < 0)
+            {
+                MessageBox.Show("次やるまでの時間の入力が不正です。\n0時間以上に設定してください。");
+                return;
+            }
+
+            // 設定値をもとに追加
             var item = new ViewModel.Item
             {
                 Name = mAddViewModel.Name,
