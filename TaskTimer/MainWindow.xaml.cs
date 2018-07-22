@@ -62,7 +62,7 @@ namespace TaskTimer
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = new AddWindow(mViewModel);
+            var window = new AddWindow.AddWindow(mViewModel);
             window.Show();
         }
     }

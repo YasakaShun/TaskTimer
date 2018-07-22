@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TaskTimer
+namespace TaskTimer.AddWindow
 {
     /// <summary>
     /// AddWindow.xaml の相互作用ロジック
